@@ -1,3 +1,0 @@
-#!/bin/sh
-
-php /usr/share/cassa-ugmm/www/expiredmembers.php

@@ -1,5 +1,0 @@
-www/* /usr/share/cassa-ugmm/www/
-cassa-ugmm.conf /etc/apache2/conf.d/
-
-extras/ /usr/share/doc/cassa-ugmm/
-
