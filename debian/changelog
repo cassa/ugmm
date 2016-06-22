@@ -1,36 +1,41 @@
-PLUG-ugmm (0.5.2) UNRELEASED; urgency=low
+cassa-ugmm (0.5.3) UNRELEASED; urgency=low
+  * Rebrand for CASSA
+
+ -- William Termini <wtermini@gmail.com>  Wed, 22 Jun 2016 23:52:29 +1000
+
+plug-ugmm (0.5.2) UNRELEASED; urgency=low
 
   * Dependency Issues
   * Mod_rewrite fixes
 
  -- Tim White <tim@whiteitsolutions.com.au>  Mon, 14 Jan 2013 23:52:29 +1000
 
-PLUG-ugmm (0.5.1) unstable; urgency=low
+plug-ugmm (0.5.1) unstable; urgency=low
 
   * Debian packaging fixes
 
  -- Tim White <tim@whiteitsolutions.com.au>  Sun, 04 Dec 2011 10:43:36 +1000
 
-PLUG-ugmm (0.5) unstable; urgency=low
+plug-ugmm (0.5) unstable; urgency=low
 
   * Fix bug in new member email
 
  -- Tim White <tim@whiteitsolutions.com.au>  Wed, 19 Oct 2011 07:14:17 +1000
 
-PLUG-ugmm (0.4) unstable; urgency=low
+plug-ugmm (0.4) unstable; urgency=low
 
   * Signup page (with ajax for checking things)
   * Major bug fix, ldap->dnExists is buggy so wrote our own
 
  -- Tim White <tim@whiteitsolutions.com.au>  Fri, 14 Oct 2011 09:51:18 +1000
 
-PLUG-ugmm (0.3) unstable; urgency=low
+plug-ugmm (0.3) unstable; urgency=low
 
   * Expired/Expiring user mailout script & cronjob
 
  -- Tim White <tim@whiteitsolutions.com.au>  Tue, 11 Oct 2011 10:44:37 +1000
 
-PLUG-ugmm (0.2) unstable; urgency=low
+plug-ugmm (0.2) unstable; urgency=low
 
   * Fixes for import not creating maxUid object
   * Other small fixes
@@ -38,7 +43,7 @@ PLUG-ugmm (0.2) unstable; urgency=low
 
  -- Tim White <tim@whiteitsolutions.com.au>  Wed, 05 Oct 2011 13:04:18 +1000
 
-PLUG-ugmm (0.1) unstable; urgency=low
+plug-ugmm (0.1) unstable; urgency=low
 
   * Initial Release.
 
