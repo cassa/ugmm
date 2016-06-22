@@ -1,4 +1,4 @@
 www/* /usr/share/cassa-ugmm/www/
-cassa-ugmm.conf /etc/apache2/conf-available/
+cassa-ugmm.conf /etc/apache2/sites-available/
 
 extras/ /usr/share/doc/cassa-ugmm/

@@ -19,6 +19,13 @@ This will give you a file like cassa-ugmm_0.5.2_all.deb which you can then insta
 ```
 sudo gdebi cassa-ugmm_0.5.2_all.deb
 ```
+## Setup
 
+setup LDAP conf
 
+cp /usr/share/cassa-ugmm/www/CASSA/ldapconnection.inc.php.example  /etc/private/ldapconnection.inc.php
+```
+enable mod rewrite
 
+a2enmod rewrite
+```
