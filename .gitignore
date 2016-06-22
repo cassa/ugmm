@@ -1,5 +1,5 @@
 ./debian/cassa-uggm
-./debian/cassa-ugmm.debhelper.log
-./debian/cassa-ugmm.substvars
-./debian/files
+debian/cassa-ugmm.debhelper.log
+debian/cassa-ugmm.substvars
+debian/files
 
