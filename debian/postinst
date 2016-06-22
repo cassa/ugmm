@@ -11,13 +11,13 @@ if [ "$action" != configure ]
 fi
 
 fix_dir_perms(){
-	chgrp www-data -R /usr/share/plug-ugmm/www/ || true
-	mkdir /usr/share/plug-ugmm/www/templates_c || true
-	chmod ag+rw -R /usr/share/plug-ugmm/www/templates_c || true
+	chgrp www-data -R /usr/share/cassa-ugmm/www/ || true
+	mkdir /usr/share/cassa-ugmm/www/templates_c || true
+	chmod ag+rw -R /usr/share/cassa-ugmm/www/templates_c || true
 }
 
 clear_template_cache(){
-    rm -f /usr/share/plug-ugmm/www/templates_c/*
+    rm -f /usr/share/cassa-ugmm/www/templates_c/*
 }
 
 #DEBHELPER#

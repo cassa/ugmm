@@ -1,11 +1,11 @@
-# Groups, plug.org.au
-dn: ou=Groups,dc=plug,dc=org,dc=au
+# Groups, cassa.org.au
+dn: ou=Groups,dc=cassa,dc=org,dc=au
 ou: Groups
 objectClass: organizationalUnit
 objectClass: top
 
 # Users Private Groups
-dn: ou=UPG,ou=Groups,dc=plug,dc=org,dc=au
+dn: ou=UPG,ou=Groups,dc=cassa,dc=org,dc=au
 ou: UPG
 objectClass: organizationalUnit
 objectClass: top

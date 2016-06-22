@@ -5,9 +5,9 @@ $TOPLEVEL = 'ctte';
 $PAGETITLE = ' - Add Member';
 $TITLE = 'Add New Member';
 
-require_once('./PLUG/session.inc.php');
+require_once('./CASSA/session.inc.php');
 
-    $PLUG = new PLUG($ldap);
+    $CASSA = new CASSA($ldap);
 
      if(isset($_POST['newmember_form']) && !verify_nonce($_POST['nonce'],'newmember'))
         $error[] = "Attempt to double submit form? No changes made.";
@@ -23,7 +23,7 @@ require_once('./PLUG/session.inc.php');
     if(isset($_POST['newmember_form']) && ! $error)
     {
 
-        $member = $PLUG->new_member(
+        $member = $CASSA->new_member(
             trim($_POST['uid']),
             trim($_POST['first_name']),
             trim($_POST['last_name']),

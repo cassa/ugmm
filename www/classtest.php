@@ -1,18 +1,18 @@
 <?php
 
-require_once 'PLUG/PLUG.class.php';
+require_once 'CASSA/CASSA.class.php';
 
     
-    $plug = new PLUG($ldap);
+    $cassa = new CASSA($ldap);
     
-    echo  $plug->next_freeuidNumber(10383);
+    echo  $cassa->next_freeuidNumber(10383);
 
-    var_dump($ldap->dnExists("uidNumber=10390,ou=Users,dc=plug,dc=org,dc=au"));
-    echo $ldap->getEntry("uidNumber=10390,ou=Users,dc=plug,dc=org,dc=au")->getMessage();
+    var_dump($ldap->dnExists("uidNumber=10390,ou=Users,dc=cassa,dc=org,dc=au"));
+    echo $ldap->getEntry("uidNumber=10390,ou=Users,dc=cassa,dc=org,dc=au")->getMessage();
     
     //$testperson = new Person($ldap);
     
-    //$testperson->load_ldap("uidNumber=10063,ou=Users,dc=plug,dc=org,dc=au");
+    //$testperson->load_ldap("uidNumber=10063,ou=Users,dc=cassa,dc=org,dc=au");
     
     //$hash = createPasswordHash('password');
     //echo "$hash"; echo "</br>";

@@ -5,7 +5,7 @@ $TOPLEVEL = 'home';
 $PAGETITLE = 'Logout';
 $TITLE = 'Logout';
 
-require_once('./PLUG/session.inc.php');
+require_once('./CASSA/session.inc.php');
 
 // Logout
 $Auth->logout();

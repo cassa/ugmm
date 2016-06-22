@@ -1,8 +1,8 @@
 <?php
 
-require_once('./PLUG/session.inc.php');
+require_once('./CASSA/session.inc.php');
     
-    $PLUG = new PLUG($ldap);
+    $CASSA = new CASSA($ldap);
     
     
     if(intval($_GET['member_id']) < 10000)
@@ -11,7 +11,7 @@ require_once('./PLUG/session.inc.php');
     }
     
     $memberid = intval($_GET['member_id']);
-    $member = $PLUG->get_member_object($memberid);        
+    $member = $CASSA->get_member_object($memberid);        
     $memberdetails = $member->userarray(); 
     $memberpayments = $member->paymentsarray();       
     

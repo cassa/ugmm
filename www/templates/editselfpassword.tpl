@@ -1,9 +1,9 @@
-  <h2>Change your PLUG password</h2>
+  <h2>Change your CASSA password</h2>
 
-  <p>Your PLUG password is used to access the members area of the
-  website and login to PLUG machines. It is not associated with
-  your PLUG mailing list subscriptions in any way. Changes to your
-  PLUG password takes effect immediately.</p>
+  <p>Your CASSA password is used to access the members area of the
+  website and login to CASSA machines. It is not associated with
+  your CASSA mailing list subscriptions in any way. Changes to your
+  CASSA password takes effect immediately.</p>
   
   Your password must:
 

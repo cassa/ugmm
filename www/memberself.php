@@ -5,7 +5,7 @@ $TOPLEVEL = 'home';
 $PAGETITLE = ' - Member Details';
 $TITLE = 'Your Membership Details';
 
-require_once('./PLUG/session.inc.php');
+require_once('./CASSA/session.inc.php');
     
     $memberself = new Person($ldap);
     $memberauthdata = $Auth->getAuthData();

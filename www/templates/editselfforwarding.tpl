@@ -1,4 +1,4 @@
-  <h2>Change e-mail forwarding for {$member.uid}@members.plug.org.au</h2>
+  <h2>Change e-mail forwarding for {$member.uid}@members.cassa.org.au</h2>
 
   <form method="post" action="" enctype=
   "application/x-www-form-urlencoded">
@@ -12,7 +12,7 @@
         <td><input type="text" name="email_forward" value=
         "{$member.mailForward}" size="30"></td>
       </tr>
-    </table>If you would not like your PLUG email to be redirected,
+    </table>If you would not like your CASSA email to be redirected,
     the above field should be blank.<br>
     <input type="submit" name="go_go_button" value="Change">
     <input type="submit" name="oops_button" value="Cancel">

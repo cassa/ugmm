@@ -1,10 +1,10 @@
 <?php
 
-require_once('PLUG/pagefunctions.inc.php');
+require_once('CASSA/pagefunctions.inc.php');
 
-require_once 'PLUG/PLUG.class.php';
+require_once 'CASSA/CASSA.class.php';
 
-$PLUG = new PLUG($ldap);
+$CASSA = new CASSA($ldap);
 
 if(isset($_POST['resetpassword_form']))
 {
@@ -15,7 +15,7 @@ if(isset($_POST['resetpassword_form']))
     
     // if member by email then get object
    
-    $member = $PLUG->get_member_by_email($memberemail);
+    $member = $CASSA->get_member_by_email($memberemail);
     
     if($member)    
     {
@@ -32,36 +32,36 @@ if(isset($_POST['resetpassword_form']))
        //TODO move this into class as well?
         $resetemail ="
 Hi $name,
-You recently asked to reset your PLUG password. To complete your request, please follow this link:
+You recently asked to reset your CASSA password. To complete your request, please follow this link:
 
 $reseturl
 
-If you did not request a new password please contact the PLUG admins at admin@plug.org.au
+If you did not request a new password please contact the CASSA admins at admin@cassa.org.au
 
 Thanks,
-The PLUG Password Reset facility";
+The CASSA Password Reset facility";
 
 
-        if(mail($member->mail(), 'PLUG Password Reset', $resetemail, "From: admin@plug.org.au"))
+        if(mail($member->mail(), 'CASSA Password Reset', $resetemail, "From: admin@cassa.org.au"))
         {
             $success[] = _('An email has been sent to your address with a reset link');            
         }
         else
         {
-            $error[] = _('There was an error sending the reset email. Please report this to admin@plug.org.au');
+            $error[] = _('There was an error sending the reset email. Please report this to admin@cassa.org.au');
         }
 
 
     }
     else
     {
-        $error[] = _('Incorrect email address. Please check the address. If you are still having trouble please contact the admins at admin @ plug.org.au');
+        $error[] = _('Incorrect email address. Please check the address. If you are still having trouble please contact the admins at admin @ cassa.org.au');
     }
     
 }
 else if(isset($_GET['uid']) && isset($_GET['reset']))
 {
-    $member = $PLUG->get_member_object(intval($_GET['uid']));
+    $member = $CASSA->get_member_object(intval($_GET['uid']));
     
     if(PEAR::isError($member))
     {

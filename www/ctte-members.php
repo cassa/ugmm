@@ -5,15 +5,15 @@ $TOPLEVEL = 'ctte';
 $PAGETITLE = ' - Membership List';
 $TITLE = 'Membership List';
 
-require_once('./PLUG/session.inc.php');
+require_once('./CASSA/session.inc.php');
     
-    $PLUG = new PLUG($ldap);
+    $CASSA = new CASSA($ldap);
     
-    $smarty->assign('currentusers', $PLUG->get_current_members());
-    $smarty->assign('pendingusers', $PLUG->get_pending_members());
+    $smarty->assign('currentusers', $CASSA->get_current_members());
+    $smarty->assign('pendingusers', $CASSA->get_pending_members());
     if($_GET['expiredmembers'])
     {
-        $smarty->assign('expiredusers', $PLUG->get_expired_members());        
+        $smarty->assign('expiredusers', $CASSA->get_expired_members());        
     }
     display_page('listusers.tpl');
 

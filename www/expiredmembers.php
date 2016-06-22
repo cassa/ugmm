@@ -3,9 +3,9 @@
 // Start of code for emailing expired members and moving them into the expired group
 
 require_once('/etc/private/ldapconnection.inc.php');
-require_once '/usr/share/plug-ugmm/www/PLUG/PLUG.class.php';
+require_once '/usr/share/cassa-ugmm/www/CASSA/CASSA.class.php';
 
-$PLUG = new PLUG($ldap);
+$CASSA = new CASSA($ldap);
 
 // ********* Expired members 
 
@@ -13,9 +13,9 @@ $PLUG = new PLUG($ldap);
 $today = ceil(time()/ 86400) - 5;
 
 // Select all accounts not already in group expired
-$filter = "(&(shadowExpire<=$today)(memberOf=cn=currentmembers,ou=Groups,dc=plug,dc=org,dc=au))";
+$filter = "(&(shadowExpire<=$today)(memberOf=cn=currentmembers,ou=Groups,dc=cassa,dc=org,dc=au))";
 
-$members = $PLUG->load_members_dn_from_filter($filter);
+$members = $CASSA->load_members_dn_from_filter($filter);
 
 foreach($members as $dn)
 {
@@ -38,9 +38,9 @@ foreach($members as $dn)
 $future = ceil(time()/ 86400) + 30;
 
 // Select all accounts not already in group expired
-$filter = "(&(shadowExpire=$future)(memberOf=cn=currentmembers,ou=Groups,dc=plug,dc=org,dc=au))";
+$filter = "(&(shadowExpire=$future)(memberOf=cn=currentmembers,ou=Groups,dc=cassa,dc=org,dc=au))";
 
-$members = $PLUG->load_members_dn_from_filter($filter);
+$members = $CASSA->load_members_dn_from_filter($filter);
 
 foreach($members as $dn)
 {
@@ -61,25 +61,25 @@ function send_expired_email($member, $details)
 {
     $body = "Dear %s,
     
-Your PLUG membership expired on %s.
+Your CASSA membership expired on %s.
 
-If you wish to renew your PLUG membership, you have several options:
+If you wish to renew your CASSA membership, you have several options:
 
 ".PAYMENT_OPTIONS."
      
 Membership fees are \$%s per year, or \$%s per year for holders of a
 current student or concession card.
 
-You may choose not to renew your membership, in which case your PLUG
+You may choose not to renew your membership, in which case your CASSA
 shell account will expire 5 days after your membership lapsed. However,
 the mailing list is still freely accessible to non-members.
 
-If you have any queries, please do not hesitate to contact the PLUG
+If you have any queries, please do not hesitate to contact the CASSA
 committee via email at ".COMMITTEE_EMAIL.".
 
 Regards,
 
-PLUG Membership Scripts";
+CASSA Membership Scripts";
 
     $body = sprintf($body,
         $details['displayName'],
@@ -88,7 +88,7 @@ PLUG Membership Scripts";
         CONCESSION_AMOUNT / 100
     );
         
-    $subject = "Your PLUG Membership has Expired";
+    $subject = "Your CASSA Membership has Expired";
     
     if($member->send_user_email($body, $subject))
     {
@@ -102,25 +102,25 @@ function send_expiring_email($member, $details)
 {
     $body = "Dear %s,
     
-Your PLUG membership is due to expire on %s.
+Your CASSA membership is due to expire on %s.
 
-If you wish to renew your PLUG membership, you have several options:
+If you wish to renew your CASSA membership, you have several options:
 
 ".PAYMENT_OPTIONS."
      
 Membership fees are \$%s per year, or \$%s per year for holders of a
 current student or concession card.
 
-You may choose not to renew your membership, in which case your PLUG
+You may choose not to renew your membership, in which case your CASSA
 shell account will expire 5 days after your membership lapsed. However,
 the mailing list is still freely accessible to non-members.
 
-If you have any queries, please do not hesitate to contact the PLUG
+If you have any queries, please do not hesitate to contact the CASSA
 committee via email at ".COMMITTEE_EMAIL.".
 
 Regards,
 
-PLUG Membership Scripts";
+CASSA Membership Scripts";
 
     $body = sprintf($body,
         $details['displayName'],
@@ -129,7 +129,7 @@ PLUG Membership Scripts";
         CONCESSION_AMOUNT / 100
     );
         
-    $subject = "Your PLUG Membership is Expiring";
+    $subject = "Your CASSA Membership is Expiring";
     
     if($member->send_user_email($body, $subject))
     {
@@ -143,7 +143,7 @@ function send_waitingpayment_email($member, $details)
 {
     $body = "Dear %s,
     
-Your PLUG membership is awaiting payment before it is activated.
+Your CASSA membership is awaiting payment before it is activated.
 
 If you have already paid, please email ".COMMITTEE_EMAIL." to sort out your
 account activation. Otherwise you have several options for payment:
@@ -153,16 +153,16 @@ account activation. Otherwise you have several options for payment:
 Membership fees are \$%s per year, or \$%s per year for holders of a
 current student or concession card.
 
-You may choose not to pay membership, in which case your PLUG membership and
+You may choose not to pay membership, in which case your CASSA membership and
 shell account will not be actived. However, the mailing list is still freely
 accessible to non-members.
 
-If you have any queries, please do not hesitate to contact the PLUG
+If you have any queries, please do not hesitate to contact the CASSA
 committee via email at ".COMMITTEE_EMAIL.".
 
 Regards,
 
-PLUG Membership Scripts";
+CASSA Membership Scripts";
 
     $body = sprintf($body,
         $details['displayName'],
@@ -170,7 +170,7 @@ PLUG Membership Scripts";
         CONCESSION_AMOUNT / 100
     );
         
-    $subject = "Your PLUG Membership is awaiting payment";
+    $subject = "Your CASSA Membership is awaiting payment";
     
     if($member->send_user_email($body, $subject))
     {

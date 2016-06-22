@@ -1,13 +1,13 @@
-Source: plug-ugmm
+Source: cassa-ugmm
 Section: web
 Priority: extra
 Maintainer: Timothy White <tim@purewhite.id.au>
 Build-Depends: debhelper (>= 7.0.50~)
 Standards-Version: 3.9.1
-Homepage: http://www.plug.org.au/projects/ugmm/
+Homepage: http://www.cassa.org.au/projects/ugmm/
 
-Package: plug-ugmm
+Package: cassa-ugmm
 Architecture: all
 Depends: ${misc:Depends}, smarty, php5, php-auth, libjs-jquery-ui, php-net-ldap2
-Description: PLUG User Group Members Management 
+Description: CASSA User Group Members Management 
  PHP Frontend to LDAP backend for managing a user group of members

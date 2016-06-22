@@ -1,10 +1,10 @@
 <?php
 
-require_once('PLUG/pagefunctions.inc.php');
+require_once('CASSA/pagefunctions.inc.php');
 
-require_once 'PLUG/PLUG.class.php';
+require_once 'CASSA/CASSA.class.php';
 
-$PLUG = new PLUG($ldap);
+$CASSA = new CASSA($ldap);
 
 switch($_POST['ajax'])
 {
@@ -16,7 +16,7 @@ switch($_POST['ajax'])
                 echo "<span style='color:#f00'>Username too short</span>";
                 break;
             }
-            if(! $PLUG->check_username_available($username))
+            if(! $CASSA->check_username_available($username))
             {
                 echo "<span style='color:#0c0'>Username $username is available</span>";
             }else{

@@ -12,7 +12,7 @@ require_once('/etc/private/ldapconnection.inc.php');
 require_once('pagefunctions.inc.php');
 require_once('Auth.php');
 
-require_once 'PLUG.class.php';
+require_once 'CASSA.class.php';
 
 function loginForm($username = null, $status = null, &$auth = null)
 {
@@ -66,7 +66,7 @@ $Auth->setAdvancedSecurity(array(
     AUTH_ADV_CHALLENGE => false
 ));
 $Auth->setIdle(600);
-$Auth->setSessionName("secureplug");
+$Auth->setSessionName("securecassa");
 
 
 /* *

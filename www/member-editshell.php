@@ -5,7 +5,7 @@ $TOPLEVEL = 'home';
 $PAGETITLE = ' - Editing Member Shell';
 $TITLE = 'Edit Member Shell';
 
-require_once('./PLUG/session.inc.php');
+require_once('./CASSA/session.inc.php');
 
     $memberself = new Person($ldap);
     $memberauthdata = $Auth->getAuthData();

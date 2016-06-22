@@ -98,8 +98,8 @@ $submenu['ctte']['newmember'] = array('label' => "New Member", 'link' => 'ctte-n
 $submenu['ctte']['editmember'] = array('label' => '', 'link' => 'ctte-editmember?id=');
 $submenu['ctte']['resendack'] = array('label' => '', 'link' => 'resendack?member_id=');
 
-$submenu['admin']['usergroups'] = array('label' => "Manage User Groups", 'link' => '/~tim/plugldap/');
-$submenu['admin']['emailaliases'] = array('label' => "Manage Email Aliases", 'link' => '/~tim/plugldap/');
+$submenu['admin']['usergroups'] = array('label' => "Manage User Groups", 'link' => '/~tim/cassaldap/');
+$submenu['admin']['emailaliases'] = array('label' => "Manage Email Aliases", 'link' => '/~tim/cassaldap/');
 
 $submenu['home']['editselfdetails'] = array('link' => 'member-editdetails');
 $submenu['home']['editselfforwarding'] = array('link' => 'member-editforwarding');

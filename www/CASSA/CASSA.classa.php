@@ -8,40 +8,40 @@ define('FULL_AMOUNT', 2000);
 define('CONCESSION_TYPE', 2);
 define('FULL_TYPE', 1);
 
-define('COMMITTEE_EMAIL', "committee@plug.org.au");
-define('CONTACT_EMAIL', "committee@plug.org.au");
-define('WEBMASTERS_EMAIL', "webmasters@plug.org.au");
-define('ADMIN_EMAIL', "admin@plug.org.au");
-define('SCRIPTS_FROM_EMAIL', "PLUG Membership Scripts <admin@plug.org.au>");
-define('SCRIPTS_REPLYTO_EMAIL', "PLUG Committee <committee@plug.org.au>");
+define('COMMITTEE_EMAIL', "committee@cassa.org.au");
+define('CONTACT_EMAIL', "committee@cassa.org.au");
+define('WEBMASTERS_EMAIL', "webmasters@cassa.org.au");
+define('ADMIN_EMAIL', "admin@cassa.org.au");
+define('SCRIPTS_FROM_EMAIL', "CASSA Membership Scripts <admin@cassa.org.au>");
+define('SCRIPTS_REPLYTO_EMAIL', "CASSA Committee <committee@cassa.org.au>");
 
-define('DEFAULT_MEMBER', 'cn=admin,dc=plug,dc=org,dc=au');
+define('DEFAULT_MEMBER', 'cn=admin,dc=cassa,dc=org,dc=au');
 
 // For debugging, remove later TODO:
-// define('ADMIN_EMAIL', "linuxalien@plug.org.au");
+// define('ADMIN_EMAIL', "linuxalien@cassa.org.au");
 
 define('PAYMENT_OPTIONS', 
-" (a) Head down to the next PLUG workshop or seminar to pay your dues to
+" (a) Head down to the next CASSA workshop or seminar to pay your dues to
      a committee member (e-mail ".COMMITTEE_EMAIL." beforehand to make
      sure there will be somebody there to renew your membership).
 
- (b) Direct deposit your dues into PLUG's bank account (see
-     http://www.plug.org.au/membership for details), and email
+ (b) Direct deposit your dues into CASSA's bank account (see
+     http://www.cassa.org.au/membership for details), and email
      ".COMMITTEE_EMAIL." to let them know you have deposited it.
      Credit card facilities are available if no other method is
      available to you, just contact the committee to organise.
 
- (c) Send a money-order (not cash) to PLUG's snail-mail address,
-     available at http://www.plug.org.au/contact and email
+ (c) Send a money-order (not cash) to CASSA's snail-mail address,
+     available at http://www.cassa.org.au/contact and email
      ".COMMITTEE_EMAIL." to let them know you have sent it.");
 
 
 if(!defined('FORCE'))
     define('FORCE', false);
 
-class PLUG {
+class CASSA {
 
-    // Class for plug, contains members of type Member/Person
+    // Class for cassa, contains members of type Member/Person
    
     private $currentmembers;
     private $expiredmembers;
@@ -57,7 +57,7 @@ class PLUG {
     private function load_ldapmembers_from_group($group)
     {
         // Fetch entry for group and all member attributes
-        $dn = "cn=$group,ou=Groups,dc=plug,dc=org,dc=au";
+        $dn = "cn=$group,ou=Groups,dc=cassa,dc=org,dc=au";
         $entry = $this->ldap->getEntry($dn, array('member'));
         
         if (PEAR::isError($entry)) {
@@ -85,7 +85,7 @@ class PLUG {
     function load_members_dn_from_filter($filter)
     {
         $filter = Net_LDAP2_Filter::parse($filter);
-        $searchbase = "ou=Users,dc=plug,dc=org,dc=au";
+        $searchbase = "ou=Users,dc=cassa,dc=org,dc=au";
         $options = array(
             'scope' => 'sub',
             'attributes' => array(
@@ -150,7 +150,7 @@ class PLUG {
     function get_member_object($uidNumber)
     {
         $uidNumber = intval($uidNumber); // Sanitise 
-        $dn = "uidNumber=$uidNumber,ou=Users,dc=plug,dc=org,dc=au";    
+        $dn = "uidNumber=$uidNumber,ou=Users,dc=cassa,dc=org,dc=au";    
         if($this->ldap->dnExists($dn))
         {
             $thismember = new Person($this->ldap);
@@ -167,7 +167,7 @@ class PLUG {
     function get_member_by_email($email)
     {
         $filter = Net_LDAP2_Filter::create('mail', 'equals',  $email);
-        $searchbase = "ou=Users,dc=plug,dc=org,dc=au";
+        $searchbase = "ou=Users,dc=cassa,dc=org,dc=au";
         $options = array(
             'scope' => 'one',
             'attributes' => array(
@@ -197,7 +197,7 @@ class PLUG {
 /*    function get_member($uidNumber)
     {
         $uidNumber = intval($uidNumber); // Sanitise 
-        $dn = "uidNumber=$uidNumber,ou=Users,dc=plug,dc=org,dc=au";    
+        $dn = "uidNumber=$uidNumber,ou=Users,dc=cassa,dc=org,dc=au";    
         $thismember = new Person($this->ldap);
         $thismember->load_ldap($dn);
         $thismember->load_payments();
@@ -208,7 +208,7 @@ class PLUG {
     function check_username_available($username)
     {
         $filter = Net_LDAP2_Filter::create('uid', 'equals',  $username);
-        $searchbase = 'ou=Users,dc=plug,dc=org,dc=au';
+        $searchbase = 'ou=Users,dc=cassa,dc=org,dc=au';
         $options = array(
             'scope' => 'one',
             'attributes' => array('dn'),
@@ -226,7 +226,7 @@ class PLUG {
     
     function next_uidNumber()
     {
-        $dn = "cn=maxUid,ou=Users,dc=plug,dc=org,dc=au";
+        $dn = "cn=maxUid,ou=Users,dc=cassa,dc=org,dc=au";
         // Get next uidNumber from maxUid
         
         $entry = $this->ldap->getEntry($dn, array('uidNumber'));
@@ -258,10 +258,10 @@ class PLUG {
     {
         // Loop checking that it's actually available
         /* This code should work but dnExists is broken
-        while($this->ldap->dnExists("uidNumber=$uidNumber,ou=Users,dc=plug,dc=org,dc=au"))
+        while($this->ldap->dnExists("uidNumber=$uidNumber,ou=Users,dc=cassa,dc=org,dc=au"))
             $uidNumber++;
         */
-        while($this->our_dnExists("uidNumber=$uidNumber,ou=Users,dc=plug,dc=org,dc=au"))
+        while($this->our_dnExists("uidNumber=$uidNumber,ou=Users,dc=cassa,dc=org,dc=au"))
             $uidNumber++;
         return $uidNumber;
     }
@@ -279,20 +279,20 @@ class PLUG {
     
     /*function next_paymentID()
     {
-        $dn = "cn=maxUid,ou=Users,dc=plug,dc=org,dc=au";
+        $dn = "cn=maxUid,ou=Users,dc=cassa,dc=org,dc=au";
         // Get next paymentID from maxUid
         
-        $entry = $this->ldap->getEntry($dn, array('x-plug-paymentID'));
+        $entry = $this->ldap->getEntry($dn, array('x-cassa-paymentID'));
         
         if (PEAR::isError($entry)) {
             throw new Exception('LDAP Error: '.$entry->getMessage());
         }         
 
-        $paymentID = $entry->getValue('x-plug-paymentID');
+        $paymentID = $entry->getValue('x-cassa-paymentID');
 
         // Increment maxUid        
         $entry->replace(array(
-            'x-plug-paymentID' => $paymentID + 1));
+            'x-cassa-paymentID' => $paymentID + 1));
         
         $result = $entry->update();
         
@@ -333,13 +333,13 @@ class Payment
     private $dn;
     private $ldap;
     private $paymentarray = array(
-        'objectClass' => array('top', 'x-plug-payment'),
-        'x-plug-paymentAmount' => 0,
-        'x-plug-paymentDate' => '',
-        'x-plug-paymentID' => '',
-        'x-plug-paymentType' => '',
-        'x-plug-paymentDescription' => '',
-        'x-plug-paymentYears' => 0); 
+        'objectClass' => array('top', 'x-cassa-payment'),
+        'x-cassa-paymentAmount' => 0,
+        'x-cassa-paymentDate' => '',
+        'x-cassa-paymentID' => '',
+        'x-cassa-paymentType' => '',
+        'x-cassa-paymentDescription' => '',
+        'x-cassa-paymentYears' => 0); 
         
     function __construct($ldap)
     {
@@ -351,12 +351,12 @@ class Payment
         $this->dn = $dn;
         $this->ldapentry = $this->ldap->getEntry($dn, array(
             'objectClass',
-            'x-plug-paymentAmount',
-            'x-plug-paymentDate',
-            'x-plug-paymentID',
-            'x-plug-paymentType',
-            'x-plug-paymentDescription',
-            'x-plug-paymentYears'
+            'x-cassa-paymentAmount',
+            'x-cassa-paymentDate',
+            'x-cassa-paymentID',
+            'x-cassa-paymentType',
+            'x-cassa-paymentDescription',
+            'x-cassa-paymentYears'
             ));
         if (PEAR::isError($this->ldapentry)) {
             throw new Exception('LDAP Error: '.$this->ldapentry->getMessage());
@@ -370,20 +370,20 @@ class Payment
     
 /*    function new_payment($parentdn, $id, $type, $amount, $date, $description)
     {
-        $this->dn = "x-plug-paymentID=$id,$parentdn";
-        $this->paymentarray['x-plug-paymentAmount'] = $amount;
-        $this->paymentarray['x-plug-paymentDate'] = date('YmdHis',strtotime($date)). "+0800";
-        $this->paymentarray['x-plug-paymentID'] = $id;
-        $this->paymentarray['x-plug-paymentType'] = $type;
-        $this->paymentarray['x-plug-paymentDescription'] = $description;
+        $this->dn = "x-cassa-paymentID=$id,$parentdn";
+        $this->paymentarray['x-cassa-paymentAmount'] = $amount;
+        $this->paymentarray['x-cassa-paymentDate'] = date('YmdHis',strtotime($date)). "+0800";
+        $this->paymentarray['x-cassa-paymentID'] = $id;
+        $this->paymentarray['x-cassa-paymentType'] = $type;
+        $this->paymentarray['x-cassa-paymentDescription'] = $description;
         if($type == CONCESSION_TYPE)
         {
             // Concession
-            $this->paymentarray['x-plug-paymentYears'] = $amount / CONCESSION_AMOUNT;
+            $this->paymentarray['x-cassa-paymentYears'] = $amount / CONCESSION_AMOUNT;
         }else
         {
             // Assume full
-            $this->paymentarray['x-plug-paymentYears'] = $amount / FULL_AMOUNT;        
+            $this->paymentarray['x-cassa-paymentYears'] = $amount / FULL_AMOUNT;        
         }
         
         $this->create_new_ldap_payment();
@@ -395,20 +395,20 @@ class Payment
         if(! $id)
             $id = $this->next_paymentID();
             
-        $this->dn = "x-plug-paymentID=$id,$parentdn";
-        $this->paymentarray['x-plug-paymentYears'] = $years;
-        $this->paymentarray['x-plug-paymentDate'] = date('YmdHis',strtotime($date)). "+0800";
-        $this->paymentarray['x-plug-paymentID'] = $id;
-        $this->paymentarray['x-plug-paymentType'] = $type;
-        $this->paymentarray['x-plug-paymentDescription'] = $description;
+        $this->dn = "x-cassa-paymentID=$id,$parentdn";
+        $this->paymentarray['x-cassa-paymentYears'] = $years;
+        $this->paymentarray['x-cassa-paymentDate'] = date('YmdHis',strtotime($date)). "+0800";
+        $this->paymentarray['x-cassa-paymentID'] = $id;
+        $this->paymentarray['x-cassa-paymentType'] = $type;
+        $this->paymentarray['x-cassa-paymentDescription'] = $description;
         if($type == CONCESSION_TYPE)
         {
             // Concession
-            $this->paymentarray['x-plug-paymentAmount'] = $years * CONCESSION_AMOUNT * $payment_modifier_amount;
+            $this->paymentarray['x-cassa-paymentAmount'] = $years * CONCESSION_AMOUNT * $payment_modifier_amount;
         }else
         {
             // Assume full
-            $this->paymentarray['x-plug-paymentAmount'] = $years * FULL_AMOUNT * $payment_modifier_amount;        
+            $this->paymentarray['x-cassa-paymentAmount'] = $years * FULL_AMOUNT * $payment_modifier_amount;        
         }
         
         $this->create_new_ldap_payment();
@@ -431,23 +431,23 @@ class Payment
     
     private function next_paymentID()
     {
-        $dn = "cn=maxUid,ou=Users,dc=plug,dc=org,dc=au";
+        $dn = "cn=maxUid,ou=Users,dc=cassa,dc=org,dc=au";
         // Get next paymentID from maxUid
         
-        $entry = $this->ldap->getEntry($dn, array('x-plug-paymentID'));
+        $entry = $this->ldap->getEntry($dn, array('x-cassa-paymentID'));
         
         if (PEAR::isError($entry)) {
             throw new Exception('LDAP Error: '.$entry->getMessage());
         }         
 
-        $paymentID = $entry->getValue('x-plug-paymentID');
+        $paymentID = $entry->getValue('x-cassa-paymentID');
         
         // Search and ensure not already exists
         $filter2 = Net_LDAP2_Filter::combine('not', Net_LDAP2_Filter::create('cn', 'equals',  'maxUid'));        
         do{
-            $filter1 = Net_LDAP2_Filter::create('x-plug-paymentID', 'equals',  $paymentID);
+            $filter1 = Net_LDAP2_Filter::create('x-cassa-paymentID', 'equals',  $paymentID);
             $filter = Net_LDAP2_Filter::combine('and', array($filter1, $filter2));
-            $searchbase = "ou=Users,dc=plug,dc=org,dc=au";
+            $searchbase = "ou=Users,dc=cassa,dc=org,dc=au";
             $options = array(
                 'scope' => 'sub',
                 'attributes' => array(
@@ -467,7 +467,7 @@ class Payment
 
         // Increment maxUid        
         $entry->replace(array(
-            'x-plug-paymentID' => $paymentID));
+            'x-cassa-paymentID' => $paymentID));
         
         $result = $entry->update();
         
@@ -579,7 +579,7 @@ class Person {
     
     function create_person($uid, $username, $firstname, $lastname, $address, $home, $work, $mobile, $email, $forward, $password, $notes)
     {
-        $this->dn = "uidNumber=$uid,ou=Users,dc=plug,dc=org,dc=au";
+        $this->dn = "uidNumber=$uid,ou=Users,dc=cassa,dc=org,dc=au";
         $this->change_uid($uid, $uid);
         $this->change_username($username);
         $this->change_name($firstname, $lastname);
@@ -878,7 +878,7 @@ class Person {
             'member' => $this->dn,
             'objectClass' => array('groupOfNames', 'posixGroup')
         );
-        $dn = "gidNumber=$gid,ou=UPG,ou=Groups,dc=plug,dc=org,dc=au";
+        $dn = "gidNumber=$gid,ou=UPG,ou=Groups,dc=cassa,dc=org,dc=au";
         
         $entry = Net_LDAP2_Entry::createFresh($dn, $group);
         
@@ -1039,7 +1039,7 @@ class Person {
     
     function add_to_group($group)
     {
-        $groupdn = "cn=$group,ou=Groups,dc=plug,dc=org,dc=au";
+        $groupdn = "cn=$group,ou=Groups,dc=cassa,dc=org,dc=au";
         $groups = is_array(@$this->userldaparray['memberOf']) ? @$this->userldaparray['memberOf'] : array(@$this->userldaparray['memberOf']);
         if(!in_array($groupdn, $groups))
         {
@@ -1084,7 +1084,7 @@ class Person {
     
     function remove_from_group($group)
     {
-        $groupdn = "cn=$group,ou=Groups,dc=plug,dc=org,dc=au";    
+        $groupdn = "cn=$group,ou=Groups,dc=cassa,dc=org,dc=au";    
         $groups = is_array(@$this->userldaparray['memberOf']) ? @$this->userldaparray['memberOf'] : array(@$this->userldaparray['memberOf']);
         
         if(in_array($groupdn, $groups))
@@ -1177,18 +1177,18 @@ class Person {
     
     function load_payments()
     {
-        $filter = Net_LDAP2_Filter::create('objectClass', 'equals',  'x-plug-payment');
+        $filter = Net_LDAP2_Filter::create('objectClass', 'equals',  'x-cassa-payment');
         $searchbase = $this->dn;
         $options = array(
             'scope' => 'sub',
             'attributes' => array(
                 'dn',
-                'x-plug-paymentAmount',
-                'x-plug-paymentDate',
-                'x-plug-paymentID',
-                'x-plug-paymentType',
-                'x-plug-paymentDescription',
-                'x-plug-paymentYears')
+                'x-cassa-paymentAmount',
+                'x-cassa-paymentDate',
+                'x-cassa-paymentID',
+                'x-cassa-paymentType',
+                'x-cassa-paymentDescription',
+                'x-cassa-paymentYears')
             );
             
         $search = $this->ldap->search($searchbase, $filter, $options);
@@ -1197,7 +1197,7 @@ class Person {
            throw new Exception($search->getMessage() . "\n");
         }
         
-        $payments = $search->sorted_as_struct(array('x-plug-paymentID'));
+        $payments = $search->sorted_as_struct(array('x-cassa-paymentID'));
         
         
 
@@ -1206,13 +1206,13 @@ class Person {
             $this->clean_payment_struct($payment);
             // smarty tempalte doesn't like - in var names        
             /*$cleanpayment = array();
-            $cleanpayment['amount'] = $payment['x-plug-paymentAmount'][0];
-            $cleanpayment['date'] = $payment['x-plug-paymentDate'][0];
-            $cleanpayment['id'] = $payment['x-plug-paymentID'][0];
-            $cleanpayment['type'] = $payment['x-plug-paymentType'][0];
-            $cleanpayment['years'] = $payment['x-plug-paymentYears'][0];
+            $cleanpayment['amount'] = $payment['x-cassa-paymentAmount'][0];
+            $cleanpayment['date'] = $payment['x-cassa-paymentDate'][0];
+            $cleanpayment['id'] = $payment['x-cassa-paymentID'][0];
+            $cleanpayment['type'] = $payment['x-cassa-paymentType'][0];
+            $cleanpayment['years'] = $payment['x-cassa-paymentYears'][0];
             $cleanpayment['dn'] = $payment['dn'];
-            $cleanpayment['description'] = $payment['x-plug-paymentDescription'][0];
+            $cleanpayment['description'] = $payment['x-cassa-paymentDescription'][0];
             $cleanpayment['formatteddate'] = date('Y-m-d', strtotime($cleanpayment['date']));
             $cleanpayment['formattedamount'] = sprintf("$%.2f",$cleanpayment['amount']/100);
             $cleanpayment['formattedtype'] = $cleanpayment['type'] == FULL_TYPE ? "Full" : "Concession";
@@ -1231,13 +1231,13 @@ class Person {
     {
             // smarty tempalte doesn't like - in var names        
             $cleanpayment = array();
-            $cleanpayment['amount'] = $payment['x-plug-paymentAmount'][0];
-            $cleanpayment['date'] = $payment['x-plug-paymentDate'][0];
-            $cleanpayment['id'] = $payment['x-plug-paymentID'][0];
-            $cleanpayment['type'] = $payment['x-plug-paymentType'][0];
-            $cleanpayment['years'] = $payment['x-plug-paymentYears'][0];
+            $cleanpayment['amount'] = $payment['x-cassa-paymentAmount'][0];
+            $cleanpayment['date'] = $payment['x-cassa-paymentDate'][0];
+            $cleanpayment['id'] = $payment['x-cassa-paymentID'][0];
+            $cleanpayment['type'] = $payment['x-cassa-paymentType'][0];
+            $cleanpayment['years'] = $payment['x-cassa-paymentYears'][0];
             $cleanpayment['dn'] = $payment['dn'];
-            $cleanpayment['description'] = $payment['x-plug-paymentDescription'][0];
+            $cleanpayment['description'] = $payment['x-cassa-paymentDescription'][0];
             $cleanpayment['formatteddate'] = date('Y-m-d', strtotime($cleanpayment['date']));
             $cleanpayment['formattedamount'] = sprintf("$%.2f",$cleanpayment['amount']/100);
             $cleanpayment['formattedtype'] = $cleanpayment['type'] == FULL_TYPE ? "Full" : "Concession";
@@ -1248,13 +1248,13 @@ class Person {
     {
             // smarty tempalte doesn't like - in var names        
             $cleanpayment = array();
-            $cleanpayment['amount'] = $payment['x-plug-paymentAmount'];
-            $cleanpayment['date'] = $payment['x-plug-paymentDate'];
-            $cleanpayment['id'] = $payment['x-plug-paymentID'];
-            $cleanpayment['type'] = $payment['x-plug-paymentType'];
-            $cleanpayment['years'] = $payment['x-plug-paymentYears'];
+            $cleanpayment['amount'] = $payment['x-cassa-paymentAmount'];
+            $cleanpayment['date'] = $payment['x-cassa-paymentDate'];
+            $cleanpayment['id'] = $payment['x-cassa-paymentID'];
+            $cleanpayment['type'] = $payment['x-cassa-paymentType'];
+            $cleanpayment['years'] = $payment['x-cassa-paymentYears'];
             $cleanpayment['dn'] = @$payment['dn'];
-            $cleanpayment['description'] = $payment['x-plug-paymentDescription'];
+            $cleanpayment['description'] = $payment['x-cassa-paymentDescription'];
             $cleanpayment['formatteddate'] = date('Y-m-d', strtotime($cleanpayment['date']));
             $cleanpayment['formattedamount'] = sprintf("$%.2f",$cleanpayment['amount']/100);
             $cleanpayment['formattedtype'] = $cleanpayment['type'] == FULL_TYPE ? "Full" : "Concession";
@@ -1300,11 +1300,11 @@ class Person {
 
         if($ack)
         {
-            $this->sendPaymentReceipt($paymentarray['x-plug-paymentID']);
+            $this->sendPaymentReceipt($paymentarray['x-cassa-paymentID']);
         }
             
         $this->messages[] = "Payment processed";
-        return $paymentarray['x-plug-paymentID'];
+        return $paymentarray['x-cassa-paymentID'];
     }
         
     function sendPaymentReceipt($paymentid)
@@ -1325,7 +1325,7 @@ If you require a receipt please contact %s and we'll arrange for one to be poste
 Thank you for your payment.
 
 --
-PLUG Membership Scripts";
+CASSA Membership Scripts";
 
 
         $expiry = $this->expiry();
@@ -1347,7 +1347,7 @@ PLUG Membership Scripts";
         $headers .= "Bcc: ".ADMIN_EMAIL."\r\n";
         $headers .= "Content-type: text/plain; charset=iso-8859-1\r\n";
         
-        $subject = "PLUG Payment confirmation ".$paymentid;
+        $subject = "CASSA Payment confirmation ".$paymentid;
         
         if(mail($this->userldaparray['mail'], $subject, $body, $headers))
         {
@@ -1388,7 +1388,7 @@ PLUG Membership Scripts";
     // Validation function available globally
     function is_valid_password($password)
     {
-        list($valid, $error) = PLUGFunction::is_valid_password($password);
+        list($valid, $error) = CASSAFunction::is_valid_password($password);
 /*        $error = array();
         $newpassword = cleanpassword($password);
         if($newpassword == '')
@@ -1432,11 +1432,11 @@ PLUG Membership Scripts";
          
     
     
-    //Duplicate functions from PLUG class. Is there a better way of doing this as this class doesn't have access to the PLUG object?
+    //Duplicate functions from CASSA class. Is there a better way of doing this as this class doesn't have access to the CASSA object?
     private function check_username_available($username)
     {
         $filter = Net_LDAP2_Filter::create('uid', 'equals',  $username);
-        $searchbase = 'ou=Users,dc=plug,dc=org,dc=au';
+        $searchbase = 'ou=Users,dc=cassa,dc=org,dc=au';
         $options = array(
             'scope' => 'one',
             'attributes' => array('dn'),
@@ -1455,7 +1455,7 @@ PLUG Membership Scripts";
     private function check_email_available($email)
     {
         $filter = Net_LDAP2_Filter::create('mail', 'equals',  $email);
-        $searchbase = 'ou=Users,dc=plug,dc=org,dc=au';
+        $searchbase = 'ou=Users,dc=cassa,dc=org,dc=au';
         $options = array(
             'scope' => 'one',
             'attributes' => array('dn'),
@@ -1498,7 +1498,7 @@ PLUG Membership Scripts";
     private $description;*/
 }
 
-class PLUGFunction
+class CASSAFunction
 {
     // Validation function available globally
     function is_valid_password($password)
@@ -1511,7 +1511,7 @@ class PLUGFunction
         if($newpassword != $password)
             $error[] = _('Invalid characters used in password');
         
-        $error = array_merge($error, PLUGFunction::check_password_strength($newpassword));
+        $error = array_merge($error, CASSAFunction::check_password_strength($newpassword));
         
         if(sizeof($error) != 0)
         {

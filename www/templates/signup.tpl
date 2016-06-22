@@ -19,9 +19,9 @@ $(document).ready(function () {
 
 <h1>Membership Signup</h1>
 
-<a href="/ugmm/">Back to Members Area Login</a> | <a href="/">Back to main PLUG website</a>
+<a href="/ugmm/">Back to Members Area Login</a> | <a href="/">Back to main CASSA website</a>
 <p>
-If you would like to become a financial PLUG member, please fill in the following details. Becoming a member gives you the benefits listed at <a href="/membership">https://plug.org.au/membership</a>. You <strong>DO NOT</strong> need to be a member to access our <a href="/resources/mailing-list">mailing list</a> or to attend our normal <a href="/events">events</a>.
+If you would like to become a financial CASSA member, please fill in the following details. Becoming a member gives you the benefits listed at <a href="/membership">https://cassa.org.au/membership</a>. You <strong>DO NOT</strong> need to be a member to access our <a href="/resources/mailing-list">mailing list</a> or to attend our normal <a href="/events">events</a>.
 </p>
 <p>
 Membership costs are {$FULL_AMOUNT} p.a., or {$CONCESSION_AMOUNT} p.a. for students / concession.
@@ -78,7 +78,7 @@ Membership costs are {$FULL_AMOUNT} p.a., or {$CONCESSION_AMOUNT} p.a. for stude
                 <label for="uid">Username</label>
                 <input id="uid" name="uid" type="text" required value="{$newmember.uid}" placeholder="Choose a username"/><div id="uidcheckLoading"></div>
                 <div id="uidcheck"></div>                
-                <p>Your username becomes the start of your @members.plug.org.au email address</p>
+                <p>Your username becomes the start of your @members.cassa.org.au email address</p>
             </li>         
             <li>
                 

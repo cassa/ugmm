@@ -1,6 +1,6 @@
 <h2>Welcome, {$memberself.displayName}</h2>
 
-<p>Here you may check and update your current details in the PLUG membership
+<p>Here you may check and update your current details in the CASSA membership
 database, enable or disable your shell account, configure email forwarding, and more.</p>
 
 Your membership will expire on {$memberself.formattedexpiry}.
@@ -42,9 +42,9 @@ to edit them.
 <li>Requests to change your name should be sent to <a href="mailto:&#99;&#111;&#109;&#109;&#105;&#116;&#116;&#101;&#101;&#64;&#112;&#108;&#117;&#103;&#46;&#111;&#114;&#103;&#46;&#97;&#117;">&#99;&#111;&#109;&#109;&#105;&#116;&#116;&#101;&#101;&#64;&#112;&#108;&#117;&#103;&#46;&#111;&#114;&#103;&#46;&#97;&#117;</a>.</ul></p>
 <h3><a name="email"></a>E-mail Forwarding</h3>
 {if $memberself.mailForward}
-<p>Mail sent to your PLUG email address ({$memberself.uid}@members.plug.org.au) is being redirected to {$memberself.mailForward}.</p>
+<p>Mail sent to your CASSA email address ({$memberself.uid}@members.cassa.org.au) is being redirected to {$memberself.mailForward}.</p>
 {else}
-<p>Mail sent to your PLUG email address ({$memberself.uid}@members.plug.org.au) is currently being delivered to your home directory</p>
+<p>Mail sent to your CASSA email address ({$memberself.uid}@members.cassa.org.au) is currently being delivered to your home directory</p>
 {/if}
 
 <p>
@@ -64,7 +64,7 @@ to edit them.
 <tr><th>Shell</th><td>{$memberself.loginShell}</td></tr>
 <tr><th>Account expires</th><td>{$memberself.formattedexpiry}</td></tr>
 </table>
-<p>If you do not require your PLUG account (including POP3/IMAP access), you
+<p>If you do not require your CASSA account (including POP3/IMAP access), you
 may wish to disable it using the link below. You might want to ensure your
 <a href="#email">mail forwarding</a> is set up before doing so, to avoid
 missing any emails.
@@ -73,11 +73,11 @@ missing any emails.
 <p>
 <ul><li><a href="{$submenuitems.home.editselfshell.link}">Change your shell account settings<a></ul></p>
 <h3><a name="password"></a>Your password</h3>
-Your PLUG password is used to access the members area of the website and login
-to PLUG machines. It is not associated with your PLUG mailing list
+Your CASSA password is used to access the members area of the website and login
+to CASSA machines. It is not associated with your CASSA mailing list
 subscriptions in any way.
 <p>
-<ul><li><a href="{$submenuitems.home.editselfpassword.link}">Change your PLUG password</a></ul></p>
+<ul><li><a href="{$submenuitems.home.editselfpassword.link}">Change your CASSA password</a></ul></p>
 </td>
 </tr>
 </table>

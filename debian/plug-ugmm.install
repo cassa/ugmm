@@ -1,5 +1,5 @@
-www/* /usr/share/plug-ugmm/www/
-plug-ugmm.conf /etc/apache2/conf.d/
+www/* /usr/share/cassa-ugmm/www/
+cassa-ugmm.conf /etc/apache2/conf.d/
 
-extras/ /usr/share/doc/plug-ugmm/
+extras/ /usr/share/doc/cassa-ugmm/
 

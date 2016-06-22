@@ -171,7 +171,7 @@
     <input name="id" value="{$member.uidNumber}" type="hidden">
     E-mail forwarded to <input name="email_forward" value="{$member.mailForward}" size="30" type="text">
     <input name="go_go_button" value="Update Forwarding" type="submit"><br>
-    A blank address means that email is delivered to their PLUG
+    A blank address means that email is delivered to their CASSA
     home directory. (Currently a blank email will deliver email to
     their email address in the user details section)
   </form>
